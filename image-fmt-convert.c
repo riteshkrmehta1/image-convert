@@ -265,14 +265,14 @@ int write_bmp_file(char *filename ,unsigned long int imagesize ,int image_width 
 
 unsigned char * rgba8888_to_rgb888(int width ,int height , int size )
 {
-    int i,j;
+	int i,j;
 	unsigned char *rgb888frame = malloc(height * width * NUM_PLANES * sizeof(unsigned char));
 
 	for (i = 0, j = 0; i < size; i += 4, j += 3) {
-        rgb888frame[j]     = buffer[i];
-        rgb888frame[j + 1] = buffer[i + 1];
-        rgb888frame[j + 2] = buffer[i + 2];
-    }
+		rgb888frame[j]     = buffer[i];
+		rgb888frame[j + 1] = buffer[i + 1];
+		rgb888frame[j + 2] = buffer[i + 2];
+	}
 	return rgb888frame;
 
 }
@@ -283,10 +283,10 @@ unsigned char * bgr888_to_rgb888(int size )
 	uint8_t temp;
 
 	for (i = 0; i < size; i += 3) {
-        temp = buffer[i];
-        buffer[i] = buffer[i + 2];
-        buffer[i + 2] = temp;
-    }
+		temp = buffer[i];
+		buffer[i] = buffer[i + 2];
+		buffer[i + 2] = temp;
+	}
 	return buffer;
 }
 unsigned char * rgb565_to_rgb888(int width ,int height , int size )
@@ -298,19 +298,19 @@ unsigned char * rgb565_to_rgb888(int width ,int height , int size )
 	uint16_t rgb565;
 
 	for (i = 0; i < size; i += 2) {
-        rgb565 = (buffer[i]) | (buffer[i + 1] << 8);
-        r5 = (rgb565 >> 11) & 0x1F;
-        g6 = (rgb565 >> 5) & 0x3F;
-        b5 = rgb565 & 0x1F;
+		rgb565 = (buffer[i]) | (buffer[i + 1] << 8);
+		r5 = (rgb565 >> 11) & 0x1F;
+		g6 = (rgb565 >> 5) & 0x3F;
+		b5 = rgb565 & 0x1F;
 
-        r8 = (r5 * 255 + 15) / 31;
-        g8 = (g6 * 255 + 31) / 63;
-        b8 = (b5 * 255 + 15) / 31;
+		r8 = (r5 * 255 + 15) / 31;
+		g8 = (g6 * 255 + 31) / 63;
+		b8 = (b5 * 255 + 15) / 31;
 
-        rgb888frame[c++] = r8;
-        rgb888frame[c++] = g8;
-        rgb888frame[c++] = b8;
-    }
+		rgb888frame[c++] = r8;
+		rgb888frame[c++] = g8;
+		rgb888frame[c++] = b8;
+	}
 	return rgb888frame;
 }
 int main(int argc ,char *argv[] )
